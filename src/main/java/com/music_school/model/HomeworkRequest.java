@@ -1,8 +1,11 @@
 package com.music_school.model;
 
+import java.sql.Timestamp;
+
 public record HomeworkRequest(
         int homework_id,
         int student_id,
-        int grade
+        int grade,
+        Timestamp date_until
 ) {
 }

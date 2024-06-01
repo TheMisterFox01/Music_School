@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface HomeworkRepository {
-    List<Homework> getHomeworkByStudentId(int student_id);
+    List<Homework> getHomeworksByStudentId(int student_id);
     Optional<Homework> getHomeworkById(int homework_id);
 
     void insertHomework(int student_id, Timestamp date_until);

@@ -22,6 +22,9 @@ public class StudentRepositoryImpl implements StudentRepository{
     private static final String SQL_UPDATE_STUDENT =
             "update public.student set first_name = :first_name, second_name = :second_name where student_id = :student_id";
 
+    private static final String SQL_INSERT_STUDENT =
+            "insert into public.student (first_name, second_name) values (:first_name, :second_name)";
+
     private final StudentMapper studentMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -63,5 +66,13 @@ public class StudentRepositoryImpl implements StudentRepository{
         params.addValue("first_name", first_name);
         params.addValue("second_name", second_name);
         jdbcTemplate.update(SQL_UPDATE_STUDENT, params);
+    }
+
+    @Override
+    public void insertStudent(String first_name, String second_name) {
+        var params = new MapSqlParameterSource();
+        params.addValue("first_name", first_name);
+        params.addValue("second_name", second_name);
+        jdbcTemplate.update(SQL_INSERT_STUDENT, params);
     }
 }

@@ -10,6 +10,6 @@ public interface StudentRepository {
 
     List<Student> getStudentsByGroupId(int group_id);
     Optional<Student> getStudentById(int student_id);
-
+    void insertStudent(String first_name, String second_name);
     void updateStudentById(int student_id, String first_name, String second_name);
 }

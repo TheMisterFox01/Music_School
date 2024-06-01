@@ -17,7 +17,7 @@ public class HomeworkRepositoryImpl implements HomeworkRepository{
 
 
 
-    private static final String SQL_GET_HOMEWORK_BY_STUDENT_ID =
+    private static final String SQL_GET_HOMEWORKS_BY_STUDENT_ID =
             "select student_id ,group_id, first_name, second_name from public.student where group_id = :group_id";
 
     private static final String SQL_GET_HOMEWORK_BY_ID =
@@ -41,11 +41,11 @@ public class HomeworkRepositoryImpl implements HomeworkRepository{
     }
 
     @Override
-    public List<Homework> getHomeworkByStudentId(int student_id){
+    public List<Homework> getHomeworksByStudentId(int student_id){
         var params = new MapSqlParameterSource();
         params.addValue("student_id", student_id);
         return jdbcTemplate.query(
-                SQL_GET_HOMEWORK_BY_STUDENT_ID,
+                SQL_GET_HOMEWORKS_BY_STUDENT_ID,
                 params,
                 homeworkMapper
         );
