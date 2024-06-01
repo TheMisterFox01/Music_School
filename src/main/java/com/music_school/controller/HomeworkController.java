@@ -26,12 +26,12 @@ public class HomeworkController {
         return homeworkService.getHomeworks(request.student_id());
     }
 
-    @GetMapping
+    @GetMapping(value = "/get")
     public Homework getHomework(@RequestBody HomeworkRequest request) {
         return homeworkService.getHomework(request.homework_id());
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createHomework(@RequestBody HomeworkRequest request) {
         homeworkService.createHomework(
@@ -40,7 +40,7 @@ public class HomeworkController {
         );
     }
 
-    @PutMapping
+    @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateHomework(@RequestBody HomeworkRequest request) {
         homeworkService.updateHomework(

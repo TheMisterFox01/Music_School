@@ -17,12 +17,12 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/get")
     public Group getGroup(@RequestBody GroupRequest request) {
         return groupService.getGroup(request.group_id());
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createGroup(@RequestBody GroupRequest request) {
         groupService.createGroup(
@@ -30,7 +30,7 @@ public class GroupController {
         );
     }
 
-    @PutMapping
+    @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateGroup(@RequestBody GroupRequest request) {
         groupService.updateGroup(
@@ -39,7 +39,7 @@ public class GroupController {
         );
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/delete")
     public void deleteGroup(@RequestBody GroupRequest request) {
         groupService.deleteGroup(request.group_id());
     }

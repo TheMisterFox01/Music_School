@@ -17,12 +17,12 @@ public class ClassController {
         this.classService = classService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/get")
     public Class getClass(@RequestBody ClassRequest request) {
         return classService.getClass(request.class_id());
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createClass(@RequestBody ClassRequest request) {
         classService.createClass(
@@ -31,7 +31,7 @@ public class ClassController {
         );
     }
 
-    @PutMapping
+    @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateClass(@RequestBody ClassRequest request) {
         classService.updateClass(
@@ -40,7 +40,7 @@ public class ClassController {
         );
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/delete")
     public void deleteClass(@RequestBody ClassRequest request) {
         classService.deleteClass(request.class_id());
     }

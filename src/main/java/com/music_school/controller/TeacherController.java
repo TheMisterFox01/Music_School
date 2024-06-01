@@ -20,12 +20,12 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping
+    @GetMapping(value = "/get")
     public Teacher getTeacher(@RequestBody TeacherRequest request) {
         return teacherService.getTeacher(request.teacher_id());
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTeacher(@RequestBody TeacherRequest request) {
         teacherService.createTeacher(
@@ -34,7 +34,7 @@ public class TeacherController {
         );
     }
 
-    @PutMapping
+    @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateTeacher(@RequestBody TeacherRequest request) {
         teacherService.updateTeacher(
@@ -44,7 +44,7 @@ public class TeacherController {
         );
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/delete")
     public void deleteTeacher(@RequestBody TeacherRequest request) {
         teacherService.deleteTeacher(request.teacher_id());
     }

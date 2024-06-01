@@ -26,12 +26,12 @@ public class StudentController {
         return studentService.getStudents(request.group_id());
     }
 
-    @GetMapping
+    @GetMapping(value = "/get")
     public Student getStudent(@RequestBody StudentRequest request) {
         return studentService.getStudent(request.student_id());
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody StudentRequest request) {
         studentService.createStudent(
@@ -40,7 +40,7 @@ public class StudentController {
         );
     }
 
-    @PutMapping
+    @PutMapping(value = "/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStudent(@RequestBody StudentRequest request) {
         studentService.updateStudent(
