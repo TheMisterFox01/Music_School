@@ -17,9 +17,9 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @GetMapping("/get")
-    public Group getGroup(@RequestParam int group_id) {
-        return groupService.getGroup(group_id);
+    @GetMapping
+    public Group getGroup(@RequestBody GroupRequest request) {
+        return groupService.getGroup(request.group_id());
     }
 
     @PostMapping
@@ -30,20 +30,17 @@ public class GroupController {
         );
     }
 
-    @PutMapping(value = "/{group_id}")
+    @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateGroup(
-            @RequestBody GroupRequest request,
-            @PathVariable int group_id
-    ) {
+    public void updateGroup(@RequestBody GroupRequest request) {
         groupService.updateGroup(
                 request.teacher_id(),
-                group_id
+                request.group_id()
         );
     }
 
-    @DeleteMapping(value = "/{group_id}")
-    public void deleteGroup(@PathVariable int group_id) {
-        groupService.deleteGroup(group_id);
+    @DeleteMapping
+    public void deleteGroup(@RequestBody GroupRequest request) {
+        groupService.deleteGroup(request.group_id());
     }
 }

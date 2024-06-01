@@ -12,15 +12,15 @@ import java.util.Optional;
 public class GroupRepositoryImpl implements GroupRepository{
 
     private static final String SQL_GET_GROUP_BY_ID =
-            "select teacher_id ,group_id from group where group_id = :group_id";
+            "select teacher_id ,group_id from public.group where group_id = :group_id";
 
     private static final String SQL_INSERT_GROUP =
-            "insert into group (teacher_id) values (:teacher_id)";
+            "insert into public.group (teacher_id) values (:teacher_id)";
 
     private static final String SQL_UPDATE_GROUP =
-            "update group set teacher_id = :teacher_id where group_id = :group_id";
+            "update public.group set teacher_id = :teacher_id where group_id = :group_id";
 
-    private static final String SQL_DELETE_GROUP = "delete from group where group_id = :group_id";
+    private static final String SQL_DELETE_GROUP = "delete from public.group where group_id = :group_id";
 
     private final GroupMapper groupMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -39,7 +39,7 @@ public class GroupRepositoryImpl implements GroupRepository{
         params.addValue("group_id", id);
         return jdbcTemplate.query(
                         SQL_GET_GROUP_BY_ID,
-                        //params,
+                        params,
                         groupMapper
                 ).stream()
                 .findFirst();
