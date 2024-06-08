@@ -10,5 +10,5 @@ public interface ScheduleRepository {
 
     List<Schedule> getSchedule();
 
-    void formNewSchedule();
+    void formNewSchedule(Schedule schedule);
 }
