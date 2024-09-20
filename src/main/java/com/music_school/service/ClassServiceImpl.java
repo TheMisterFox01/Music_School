@@ -32,13 +32,13 @@ public class ClassServiceImpl implements ClassService{
     public void updateClass(int id, int size){
         var _class = classRepository.getClassById(id)
                 .orElseThrow(() -> new GroupNotFoundException(id));
-        classRepository.updateClassById(_class.class_id(), size);
+        classRepository.updateClassById(_class.classId(), size);
     }
 
     @Override
     public void deleteClass(int id){
         var _class = classRepository.getClassById(id)
                 .orElseThrow(() -> new GroupNotFoundException(id));
-        classRepository.deleteClassById(_class.class_id());
+        classRepository.deleteClassById(_class.classId());
     }
 }

@@ -22,15 +22,15 @@ public class TeacherController {
 
     @GetMapping(value = "/get")
     public Teacher getTeacher(@RequestBody TeacherRequest request) {
-        return teacherService.getTeacher(request.teacher_id());
+        return teacherService.getTeacher(request.teacherId());
     }
 
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTeacher(@RequestBody TeacherRequest request) {
         teacherService.createTeacher(
-                request.first_name(),
-                request.second_name()
+                request.firstName(),
+                request.secondName()
         );
     }
 
@@ -38,14 +38,14 @@ public class TeacherController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateTeacher(@RequestBody TeacherRequest request) {
         teacherService.updateTeacher(
-                request.teacher_id(),
-                request.first_name(),
-                request.second_name()
+                request.teacherId(),
+                request.firstName(),
+                request.secondName()
         );
     }
 
     @DeleteMapping(value = "/delete")
     public void deleteTeacher(@RequestBody TeacherRequest request) {
-        teacherService.deleteTeacher(request.teacher_id());
+        teacherService.deleteTeacher(request.teacherId());
     }
 }

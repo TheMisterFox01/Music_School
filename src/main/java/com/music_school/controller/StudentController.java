@@ -23,20 +23,20 @@ public class StudentController {
 
     @GetMapping(value = "/all")
     public List<Student> getSudents(@RequestBody StudentRequest request) {
-        return studentService.getStudents(request.group_id());
+        return studentService.getStudents(request.groupId());
     }
 
     @GetMapping(value = "/get")
     public Student getStudent(@RequestBody StudentRequest request) {
-        return studentService.getStudent(request.student_id());
+        return studentService.getStudent(request.studentId());
     }
 
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody StudentRequest request) {
         studentService.createStudent(
-                request.first_name(),
-                request.second_name()
+                request.firstName(),
+                request.secondName()
         );
     }
 
@@ -44,9 +44,9 @@ public class StudentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStudent(@RequestBody StudentRequest request) {
         studentService.updateStudent(
-                request.student_id(),
-                request.first_name(),
-                request.second_name()
+                request.studentId(),
+                request.firstName(),
+                request.secondName()
         );
     }
 }

@@ -32,13 +32,13 @@ public class TeacherServiceImpl implements TeacherService{
     public void updateTeacher(int id, String first_name, String second_name){
         var teacher = teacherRepository.getTeacherById(id)
                 .orElseThrow(() -> new TeacherNotFoundException(id));
-        teacherRepository.updateTeacherById(teacher.teacher_id(),first_name,second_name);
+        teacherRepository.updateTeacherById(teacher.teacherId(),first_name,second_name);
     }
 
     @Override
     public void deleteTeacher(int id){
         var teacher = teacherRepository.getTeacherById(id)
                 .orElseThrow(() -> new TeacherNotFoundException(id));
-        teacherRepository.deleteTeacherById(teacher.teacher_id());
+        teacherRepository.deleteTeacherById(teacher.teacherId());
     }
 }

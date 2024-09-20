@@ -40,6 +40,6 @@ public class HomeworkServiceImpl implements HomeworkService{
     public void updateHomework(int grade, int homework_id) {
         var homework = homeworkRepository.getHomeworkById(homework_id)
                 .orElseThrow(() -> new HomeworkNotFoundException(homework_id));
-        homeworkRepository.updateHomeworkById(grade, homework.homework_id());
+        homeworkRepository.updateHomeworkById(grade, homework.homeworkId());
     }
 }

@@ -36,7 +36,7 @@ public class StudentServiceImpl implements StudentService{
     public void updateStudent(int student_id, String first_name, String second_name){
         var student = studentRepository.getStudentById(student_id)
                 .orElseThrow(() -> new HomeworkNotFoundException(student_id));
-        studentRepository.updateStudentById(student.student_id(),first_name,second_name);
+        studentRepository.updateStudentById(student.studentId(),first_name,second_name);
     }
 
     @Override

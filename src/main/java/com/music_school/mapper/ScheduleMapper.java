@@ -16,7 +16,9 @@ public class ScheduleMapper implements RowMapper<Schedule> {
                 rs.getInt("class_id"),
                 rs.getInt("group_id"),
                 rs.getTimestamp("date"),
-                rs.getInt("lesson_number")
+                rs.getInt("lesson_number"),
+                rs.getString("teacher_last_name"),
+                rs.getString("teacher_first_name")
         );
     }
 }

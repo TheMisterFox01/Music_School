@@ -3,6 +3,7 @@ package com.music_school.controller;
 import com.music_school.model.Homework;
 import com.music_school.model.HomeworkRequest;
 import com.music_school.model.Schedule;
+import com.music_school.model.ScheduleRequest;
 import com.music_school.service.HomeworkService;
 import com.music_school.service.ScheduleService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +24,13 @@ public class ScheduleController {
     }
 
     @GetMapping(value = "/get")
-    public List<Schedule> getHomeworks(@RequestBody HomeworkRequest request) {
-        return scheduleService.getSchedule();
+    public List<Schedule> getSchedule(@RequestBody ScheduleRequest request) {
+        return scheduleService.getSchedule(request);
     }
 
     @GetMapping(value = "/new")
-    public List<Schedule> getHomework(@RequestBody HomeworkRequest request) {
-        return scheduleService.formNewSchedule();
+    public void formSchedule(@RequestBody Schedule request) {
+        scheduleService.formNewSchedule(request);
     }
 
 }

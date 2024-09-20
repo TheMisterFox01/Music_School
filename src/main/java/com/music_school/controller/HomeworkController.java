@@ -23,20 +23,20 @@ public class HomeworkController {
 
     @GetMapping(value = "/all")
     public List<Homework> getHomeworks(@RequestBody HomeworkRequest request) {
-        return homeworkService.getHomeworks(request.student_id());
+        return homeworkService.getHomeworks(request.studentId());
     }
 
     @GetMapping(value = "/get")
     public Homework getHomework(@RequestBody HomeworkRequest request) {
-        return homeworkService.getHomework(request.homework_id());
+        return homeworkService.getHomework(request.homeworkId());
     }
 
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createHomework(@RequestBody HomeworkRequest request) {
         homeworkService.createHomework(
-                request.student_id(),
-                request.date_until()
+                request.studentId(),
+                request.dateUntil()
         );
     }
 
@@ -45,7 +45,7 @@ public class HomeworkController {
     public void updateHomework(@RequestBody HomeworkRequest request) {
         homeworkService.updateHomework(
                 request.grade(),
-                request.homework_id()
+                request.homeworkId()
         );
     }
 }

@@ -1,11 +1,13 @@
 package com.music_school.service;
 
 import com.music_school.model.Schedule;
+import com.music_school.model.ScheduleRequest;
 import com.music_school.repository.ScheduleRepository;
 import com.music_school.repository.StudentRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -19,13 +21,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getSchedule() {
-        return scheduleRepository.getSchedule();
+    public List<Schedule> getSchedule(ScheduleRequest request) {
+        return scheduleRepository.getSchedule(request);
     }
 
     @Override
-    public List<Schedule> formNewSchedule() {
-        return scheduleRepository.getSchedule();
+    public void formNewSchedule(Schedule request) {
+        scheduleRepository.formNewSchedule(request);
     }
 
 }

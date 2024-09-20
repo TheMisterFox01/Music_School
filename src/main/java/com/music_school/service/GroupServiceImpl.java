@@ -23,21 +23,21 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public void createGroup(int teacher_id) {
-        groupRepository.insertGroup(teacher_id);
+    public void createGroup(int teacherId) {
+        groupRepository.insertGroup(teacherId);
     }
 
     @Override
-    public void updateGroup(int teacher_id, int id) {
+    public void updateGroup(int teacherId, int id) {
         var group = groupRepository.getGroupById(id)
                 .orElseThrow(() -> new GroupNotFoundException(id));
-        groupRepository.updateGroupById(teacher_id, group.group_id());
+        groupRepository.updateGroupById(teacherId, group.groupId());
     }
 
     @Override
     public void deleteGroup(int id) {
         var group = groupRepository.getGroupById(id)
                 .orElseThrow(() -> new GroupNotFoundException(id));
-        groupRepository.deleteGroupById(group.group_id());
+        groupRepository.deleteGroupById(group.groupId());
     }
 }

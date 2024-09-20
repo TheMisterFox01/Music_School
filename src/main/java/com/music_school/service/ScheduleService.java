@@ -1,13 +1,14 @@
 package com.music_school.service;
 
 import com.music_school.model.Schedule;
+import com.music_school.model.ScheduleRequest;
 
 import java.util.List;
 
 public interface ScheduleService {
 
-    List<Schedule> getSchedule();
+    List<Schedule> getSchedule(ScheduleRequest request);
 
-    List<Schedule> formNewSchedule();
+    void formNewSchedule(Schedule request);
 
 }
