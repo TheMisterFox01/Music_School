@@ -1,9 +1,6 @@
 package com.music_school.controller;
 
-import com.music_school.model.Homework;
-import com.music_school.model.HomeworkRequest;
-import com.music_school.model.Schedule;
-import com.music_school.model.ScheduleRequest;
+import com.music_school.model.*;
 import com.music_school.service.HomeworkService;
 import com.music_school.service.ScheduleService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +26,7 @@ public class ScheduleController {
     }
 
     @GetMapping(value = "/new")
-    public void formSchedule(@RequestBody Schedule request) {
+    public void formSchedule(@RequestBody ScheduleFormRequest request) {
         scheduleService.formNewSchedule(request);
     }
 

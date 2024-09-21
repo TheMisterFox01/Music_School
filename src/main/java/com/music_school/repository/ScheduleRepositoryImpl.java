@@ -2,11 +2,14 @@ package com.music_school.repository;
 
 import com.music_school.mapper.ScheduleMapper;
 import com.music_school.model.Schedule;
+import com.music_school.model.ScheduleFormRequest;
 import com.music_school.model.ScheduleRequest;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,8 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
 
     private final ScheduleMapper scheduleMapper;
+
+    private final TokenValidatorRepository tokenValidator;
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     record CustomSql(String sql, Map<String, Object> args) {
@@ -30,10 +35,12 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
 
     public ScheduleRepositoryImpl(
             ScheduleMapper scheduleMapper,
-            NamedParameterJdbcTemplate jdbcTemplate
+            NamedParameterJdbcTemplate jdbcTemplate,
+            TokenValidatorRepository tokenValidator
     ) {
         this.scheduleMapper = scheduleMapper;
         this.jdbcTemplate = jdbcTemplate;
+        this.tokenValidator = tokenValidator;
     }
 
     @Override
@@ -52,15 +59,19 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
     }
 
     @Override
-    public void formNewSchedule(Schedule schedule) {
-        var params = new MapSqlParameterSource();
-        params.addValue("class_id", schedule.classId());
-        params.addValue("group_id", schedule.groupId());
-        params.addValue("date", schedule.date());
-        params.addValue("lesson_number", schedule.lessonNumber());
-        params.addValue("teacher_first_name", schedule.teacherFirstName());
-        params.addValue("teacher_last_name", schedule.teacherLastName());
-        jdbcTemplate.update(SQL_INSERT_NEW_SCHEDULE, params);
+    public void formNewSchedule(ScheduleFormRequest schedule) {
+        if (schedule.token() != null) {
+            if (tokenValidator.validateToken(schedule.token(), new Date())) {
+                var params = new MapSqlParameterSource();
+                params.addValue("class_id", schedule.classId());
+                params.addValue("group_id", schedule.groupId());
+                params.addValue("date", schedule.date());
+                params.addValue("lesson_number", schedule.lessonNumber());
+                params.addValue("teacher_first_name", schedule.teacherFirstName());
+                params.addValue("teacher_last_name", schedule.teacherLastName());
+                jdbcTemplate.update(SQL_INSERT_NEW_SCHEDULE, params);
+            }
+        }
     }
 
     private ScheduleRepositoryImpl.CustomSql buildReportSql(ScheduleRequest request) {

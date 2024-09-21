@@ -1,6 +1,7 @@
 package com.music_school.service;
 
 import com.music_school.model.Schedule;
+import com.music_school.model.ScheduleFormRequest;
 import com.music_school.model.ScheduleRequest;
 import com.music_school.repository.ScheduleRepository;
 import com.music_school.repository.StudentRepository;
@@ -26,7 +27,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void formNewSchedule(Schedule request) {
+    public void formNewSchedule(ScheduleFormRequest request) {
         scheduleRepository.formNewSchedule(request);
     }
 
